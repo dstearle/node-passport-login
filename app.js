@@ -4,6 +4,9 @@ const express = require('express');
 // Initialize Express
 const app = express();
 
+// Routes
+app.use('/', require('./routes/index'));
+
 // Port
 const PORT = process.env.PORT || 5000;
 
