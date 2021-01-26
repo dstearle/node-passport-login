@@ -21,3 +21,41 @@
     <% }); %>
 
 <% } %>
+
+<!-- If no errors are detected -->
+<% if(success_msg != '') { %>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        <!-- Success Message -->
+        <%= success_msg %>
+
+        <!-- Close Button -->
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+
+        </button>
+
+    </div>
+        
+<% } %>
+
+<!-- If any errors are detected -->
+<% if(error_msg != '') { %>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+        <!-- Error Message -->
+        <%= error_msg %>
+
+        <!-- Close Button -->
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+
+        </button>
+
+    </div>
+        
+<% } %>
