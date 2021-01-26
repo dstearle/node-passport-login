@@ -106,6 +106,7 @@ router.post('/register', (req, res) => {
                             // Save the new user to the database
                             newUser.save()
                                 .then(user => {
+                                    req.flash('success_msg', 'Success! You are now registered and have a big dick!');
                                     res.redirect('/users/login');
                                 })
                                 .catch(err => console.log(err));
