@@ -2,6 +2,8 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // Initialize Express
 const app = express();
@@ -18,8 +20,24 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-// Bodyparser
+// Express Bodyparser
 app.use(express.urlencoded({ extended: false }));
+
+// Express session
+app.use(
+
+    session({
+
+      secret: 'secret',
+      resave: true,
+      saveUninitialized: true
+
+    })
+
+);
+
+// Connect flash
+app.use(flash());
 
 // Routes
 app.use('/', require('./routes/index'));
