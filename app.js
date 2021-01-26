@@ -6,6 +6,7 @@ const app = express();
 
 // Routes
 app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
 // Port
 const PORT = process.env.PORT || 5000;
