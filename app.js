@@ -1,9 +1,18 @@
 // Imports
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
 
 // Initialize Express
 const app = express();
+
+// DB Config
+const db = require('./config/keys').MongoURI;
+
+// Connect To Mongo
+mongoose.connect(db, {useNewUrlParser: true})
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
 
 // EJS
 app.use(expressLayouts);
