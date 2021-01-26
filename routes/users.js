@@ -1,6 +1,7 @@
 // Imports
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 // User Model
 const User = require('../models/User');
@@ -78,6 +79,40 @@ router.post('/register', (req, res) => {
             
                     });
                     
+                }
+
+                // Else if it is a new user
+                else {
+
+                    // The new user data
+                    const newUser = new User({
+
+                        name,
+                        email,
+                        password
+
+                    });
+
+                    // Hash Password
+                    bcrypt.genSalt(10, (err, salt) => 
+                        bcrypt.hash(newUser.password, salt, (err, hash) => {
+
+                            // Throw error if something goes wrong
+                            if(err) throw err;
+
+                            // Set user password to hashed password
+                            newUser.password = hash;
+
+                            // Save the new user to the database
+                            newUser.save()
+                                .then(user => {
+                                    res.redirect('/users/login');
+                                })
+                                .catch(err => console.log(err));
+
+                        })
+                    )
+
                 }
 
             });
