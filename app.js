@@ -14,7 +14,6 @@ require('./config/passport')(passport);
 
 // DB Config
 const db = require('./config/keys').MongoURI;
-const passport = require('./config/passport');
 
 // Connect To Mongo
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -53,6 +52,7 @@ app.use((req, res, next) => {
 
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
     next();
     
 });
