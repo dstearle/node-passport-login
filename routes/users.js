@@ -128,8 +128,11 @@ router.post('/login', (req, res, next) => {
 
     passport.authenticate('local', {
 
+        // If login successful redirect user to their dashboard
         successRedirect: '/dashboard',
+        // If user uses wrong credentials redirect them back to login
         failureRedirect: '/users/login',
+        // Displays flash message when login failure occurs
         failureFlash: true,
 
     })(req, res, next);
