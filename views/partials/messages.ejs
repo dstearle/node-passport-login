@@ -59,3 +59,22 @@
     </div>
         
 <% } %>
+
+<!-- If any errors are detected -->
+<% if(error != '') { %>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+        <!-- Error Message -->
+        <%= error %>
+
+        <!-- Close Button -->
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+
+        </button>
+
+    </div>
+        
+<% } %>
