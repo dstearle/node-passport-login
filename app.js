@@ -4,12 +4,17 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
+const passport = require('passport');
 
 // Initialize Express
 const app = express();
 
+// Passport Config
+require('./config/passport')(passport);
+
 // DB Config
 const db = require('./config/keys').MongoURI;
+const passport = require('./config/passport');
 
 // Connect To Mongo
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -35,6 +40,10 @@ app.use(
     })
 
 );
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect flash
 app.use(flash());
